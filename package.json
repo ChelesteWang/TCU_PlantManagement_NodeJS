@@ -1,0 +1,21 @@
+{
+  "name": "tcu_plantmanagement_nodejs",
+  "version": "1.0.0",
+  "description": "TCU_plantmanagement_server maded by yexuan ...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/git_x/TCU_PlantManagement_NodeJS.git"
+  },
+  "author": "yexuan",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "*",
+    "express": "*",
+    "request": "*"
+  }
+
+}
