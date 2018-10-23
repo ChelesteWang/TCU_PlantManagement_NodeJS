@@ -2,6 +2,7 @@ const express=require('express');
 const bodyParser=require('body-parser');
 const wx_api=require('./interface/wx_api/wx_api')
 const tuling_api=require('./interface/tuling_api/tuling_api')
+const users=require('./interface/users/users')
 
 var server=express();
 server.listen(11111);
@@ -32,5 +33,12 @@ server.use('/wx_api',function(req,res){        //前台调用，返还wx_api dat
 
 server.use('/tuling_api',function(req,res){
     if(req.query.judge==1)  tuling_api.sendTulingMsg(req,res);
+    if(req.query.judge==null) res.redirect('./WWW/404/QYZQ.html');
+});
+
+server.use('/users',function(req,res){     //用户
+    if(req.query.judge==0)  users.selectOneByOpenid(req,res);
+    if(req.query.judge==1)  users.selectAllUsers(req,res);    
+    if(req.query.judge==2)  users.insertUsers(req,res);   
     if(req.query.judge==null) res.redirect('./WWW/404/QYZQ.html');
 });
