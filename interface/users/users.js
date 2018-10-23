@@ -1,16 +1,18 @@
-const promise=require('../../Promise/promise');
+const promise=require('../../promise/promise');
 const time=require('../../time/time');
 module.exports={
-    //查询用户 by openid
-    selectOneByOpenid:function(req,res){
+    //登录验证
+    login:function(req,res){
         function sel(req,res){            
-            var openid=req.query.openid;
-            var sql=`select * from users where openid="${openid}";`;
+            var username=req.query.username;
+            var password=req.query.password;
+            var sql=`select * from users where username="${username}" and password="${password}";`;
             fun(sql);
         }
         async function fun(sql) {
             const result = await promise.dbupAsync(sql);
-            res.send(result);
+            if(result.length!=1)    res.send("账户名或密码错误！");
+            else  res.send(result);
         }
         sel(req,res);
     },
@@ -28,22 +30,13 @@ module.exports={
     },
     //插入用户
     insertUsers:function(req,res){
-        function sel(req,res){         
-            var openid=req.query.openid; 
-            var name=req.query.name;            
-            var real_name=req.query.real_name;
-            var school=req.query.school;
-            var grade=req.query.grade;
-            var e_mail=req.query.e_mail;
-            var gander=req.query.gander;
-            var icon_url=req.query.icon_url;
-            var age=req.query.age;
-            var love=req.query.love;
-            var birthday=req.query.birthday;
-            var city=req.query.city;
-            var sign=req.query.sign;  
-            var sql=`insert into users values("${openid}","${name}","${real_name}","${gander}","${school}","${grade}",
-                    "${e_mail}","${time.getTime()}","${icon_url}","${age}","${love}","${birthday}","${city}","${sign}");`;
+        function sel(req,res){      
+            var userid=req.query.userid;
+            var username=req.query.username;
+            var password=req.query.password; 
+            var type=req.query.type;
+            var details=req.query.details;
+            var sql=`insert into users values("${userid}","${username}","${password}","${type}","${time.getTime()}","${details}");`;
             console.log(sql)
             fun(sql);
         }

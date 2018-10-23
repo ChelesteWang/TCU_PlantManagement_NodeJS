@@ -37,7 +37,7 @@ server.use('/tuling_api',function(req,res){
 });
 
 server.use('/users',function(req,res){     //用户
-    if(req.query.judge==0)  users.selectOneByOpenid(req,res);
+    if(req.query.judge==0)  users.login(req,res);
     if(req.query.judge==1)  users.selectAllUsers(req,res);    
     if(req.query.judge==2)  users.insertUsers(req,res);   
     if(req.query.judge==null) res.redirect('./WWW/404/QYZQ.html');
