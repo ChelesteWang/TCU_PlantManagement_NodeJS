@@ -1,0 +1,20 @@
+{
+  "name": "tzsd_tec",
+  "version": "1.0.0",
+  "description": "天职师大微信小程序培训会。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/git_x/TZSD_wechatMiniApp.git"
+  },
+  "author": "yexuan",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "*",
+    "express": "*",
+    "request": "*"
+  }
+}
