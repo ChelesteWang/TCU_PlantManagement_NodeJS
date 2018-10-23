@@ -2,7 +2,7 @@ const mysql=require('mysql');
 
 function con(){
     var db=mysql.createConnection({
-        host:'www.yexuan.site',
+        host:'localhost',
         user:'root',
         password:'yexuan0628',
         database:'tcu_forest_management'
