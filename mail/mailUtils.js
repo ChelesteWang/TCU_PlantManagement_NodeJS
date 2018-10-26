@@ -1,14 +1,3 @@
-/**
- *
- * @Description 邮件发送 
- * 调用方法:sendMail('amor_zhang@qq.com','这是测试邮件', 'Hi Amor,这是一封测试邮件');
- * @Author Amor
- * @Created 2016/04/26 15:10
- * 技术只是解决问题的选择,而不是解决问题的根本...
- * 我是Amor,为发骚而生!
- *
- */
-
 var nodemailer = require('nodemailer')
 var smtpTransport = require('nodemailer-smtp-transport');
 var config = require('./config')
@@ -36,11 +25,13 @@ var sendMail = function (recipient, subject, html,res) {
         html: html
 
     }, function (error, response) {
-        if (error) {
-            console.log(error);
-        }
-        console.log('发送成功')
-        res.send(`{ "success": "true" }`);    
+        if (error==null) {
+            console.log('发送成功')
+            res.send(`{ "success": "true" }`); 
+        }else{
+            console.log('发送失败')
+            res.send(`{ "success": "false" }`); 
+        }   
     });
 }
 

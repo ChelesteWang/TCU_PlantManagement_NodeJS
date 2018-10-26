@@ -7,12 +7,14 @@ module.exports={
             var username=req.query.username;
             var password=req.query.password;
             var sql=`select * from users where username="${username}" and password="${password}";`;
+            console.log(sql)
             fun(sql);
         }
         async function fun(sql) {
             const result = await promise.dbupAsync(sql);
-            if(result.length!=1)    res.send("账户名或密码错误！");
-            else  res.send(result);
+            // if(result.length!=1)    res.send("账户名或密码错误！");
+            // else  
+            res.send(result);
         }
         sel(req,res);
     },
@@ -36,7 +38,10 @@ module.exports={
             var password=req.query.password; 
             var type=req.query.type;
             var details=req.query.details;
-            var sql=`insert into users values("${userid}","${username}","${password}","${type}","${time.getTime()}","${details}");`;
+            var icon=req.query.icon;
+            // var sql=`insert into users values("${userid}","${username}","${password}",
+            // "${type}","${time.getTime()}","${details}","${icon}");`;
+            var sql=`insert INTO users (username,password) VALUES ('${username}','${password}');`
             console.log(sql)
             fun(sql);
         }
