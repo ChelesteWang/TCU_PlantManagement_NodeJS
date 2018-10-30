@@ -31,14 +31,16 @@ server.use('/plant',function(req,res,next){
    next();
 });
 server.get('/index',function(req,res){
-    res.redirect('./WWW/index/index.html');   
+    res.redirect('./WWW/cs.html');   
 });
 
 server.use('/users',function(req,res){     //用户
     res.setHeader("Access-Control-Allow-Origin", "*");
     if(req.query.judge==0)  users.login(req,res);
     if(req.query.judge==1)  users.selectAllUsers(req,res);    
-    if(req.query.judge==2)  users.insertUsers(req,res);   
+    if(req.query.judge==2)  users.insertUsers(req,res);     
+    if(req.query.judge==3)  users.selectUsersByEmail(req,res);  
+    if(req.query.judge==4)  users.updateUserPassword(req,res);   
     if(req.query.judge==null) res.redirect('./WWW/404/QYZQ.html');
 });
 
