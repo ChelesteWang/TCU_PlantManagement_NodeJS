@@ -6,6 +6,8 @@ const path=require('path');
 const wx_api=require('./interface/wx_api/wx_api')
 const tuling_api=require('./interface/tuling_api/tuling_api')
 const users=require('./interface/users/users')
+const file=require('./interface/file/file')
+const plants=require('./interface/plants/plants')
 const mail=require('./mail/mail')
 
 var objmulter=multer({dest:"./www/upload"});    //dest指定上传文件地址
@@ -27,7 +29,7 @@ process.on('uncaughtException', function (err) {
 server.use(bodyParser.urlencoded({extended:false}));
 server.use(express.static(__dirname));
 
-server.use('/plant',function(req,res,next){    
+server.use('/',function(req,res,next){    
    next();
 });
 server.get('/index',function(req,res){
@@ -51,18 +53,15 @@ server.use('/mail',function(req,res){
 })
 
 server.post('/UploadServlet',function(req,res){     //获取前台用户上传的头像订单
-    console.log(req.files);
-    //获取原始文件扩展名
-    var newName=req.files[0].path+pathlib.parse(req.files[0].originalname).ext;
-    console.log(pathlib.parse(req.files[0].originalname).ext);      //输出文件后缀
-    console.log("--->",newName);
-    fs.rename(req.files[0].path,newName,function(err){
-        if(err){
-            console.log("上传失败");
-            res.send(JSON.parse(`{ "file upload success ?": "flase" }`))
-        }else{
-            console.log("上传成功");
-            res.send(JSON.parse(`{ "file upload success ?": "true" ,"filename":"${newName}"}`))
-        }
-    })
+    res.setHeader("Access-Control-Allow-Origin", "*");    
+    if(req.query.judge==0)  file.uploadFile(req,res,pathlib,fs);  
+});
+
+server.use('/plants',function(req,res){     //用户
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    if(req.query.judge==0)  plants.selectAllPlants(req,res);  
+    if(req.query.judge==1)  plants.insertPlants(req,res);  
+    if(req.query.judge==2)  plants.selectPlantById(req,res);  
+    if(req.query.judge==3)  plants.updatePlantInfo(req,res);  
+    if(req.query.judge==null) res.redirect('./WWW/404/QYZQ.html');
 });
