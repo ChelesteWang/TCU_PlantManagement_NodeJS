@@ -5,7 +5,7 @@ function con() {
         host: 'localhost',
         user: 'root',
         password: 'yexuan0628',
-        database: 'tcu_forest_management'
+        database: 'YX_tcu_forest_management'
     });
     return db;
 }

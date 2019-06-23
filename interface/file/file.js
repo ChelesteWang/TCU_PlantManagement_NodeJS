@@ -1,7 +1,7 @@
 const promise=require('../../promise/promise');
 const time=require('../../time/time');
 module.exports={
-    //查询所有all plants
+    //上传文件
     uploadFile:function(req,res,pathlib,fs){
         function sel(req,res,pathlib,fs){      
             fun(req,res,pathlib,fs);
