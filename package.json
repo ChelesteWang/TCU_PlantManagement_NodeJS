@@ -1,15 +1,11 @@
 {
-  "name": "jisu",
+  "name": "tcu_plant_management_server",
   "version": "1.0.0",
-  "description": "极速校园，服务器部分，天津毅襄科技发展有限公司。",
+  "description": "植物信息管理平台。",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "push": "git push origin master"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://gitee.com/git_x/TJYX_JiSu_School_SERVER_NodeJS.git"
+    "push": "git push origin dev_2.0"
   },
   "author": "yx",
   "license": "Apache License",
@@ -18,13 +14,10 @@
     "co": "4.6.0",
     "express": "*",
     "fs": "*",
-    "jsonwebtoken": "8.5.1",
     "log4js": "3.0.6",
     "multer": "1.4.1",
     "mysql": "*",
     "mysql2": "1.6.4",
-    "nodemailer": "4.6.8",
-    "nodemailer-smtp-transport": "2.7.4",
     "path": "*",
     "qr-image": "^3.2.0",
     "request": "*",

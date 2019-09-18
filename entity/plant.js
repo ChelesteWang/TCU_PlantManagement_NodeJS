@@ -13,9 +13,15 @@ let plant = conn.define(
     {
         'id': { 'type': Sequelize.INTEGER(11), 'allowNull': true, 'primaryKey': true, 'autoIncrement': true },
         'name': { 'type': Sequelize.CHAR(255), 'allowNull': true },
-        'sciname': { 'type': Sequelize.CHAR(255), 'allowNull': true },
-        'kind': { 'type': Sequelize.CHAR(255), 'allowNull': true },
-        'detail_id': { 'type': Sequelize.INTEGER(11), 'allowNull': true },
+        'academic': { 'type': Sequelize.CHAR(255), 'allowNull': true },
+        'alias': { 'type': Sequelize.CHAR(255), 'allowNull': true },
+        'latin': { 'type': Sequelize.CHAR(255), 'allowNull': true },
+        'family': { 'type': Sequelize.CHAR(255), 'allowNull': true },
+        'genera': { 'type': Sequelize.CHAR(255), 'allowNull': true },
+        'specie': { 'type': Sequelize.CHAR(255), 'allowNull': true },
+        'morphology': { 'type': Sequelize.CHAR(255), 'allowNull': true },
+        'habit': { 'type': Sequelize.CHAR(255), 'allowNull': true },
+        'purpose': { 'type': Sequelize.CHAR(255), 'allowNull': true }
     },
     {
         'timestamps': true,     // 是否需要增加createdAt、updatedAt、deletedAt字段
@@ -41,6 +47,16 @@ module.exports = {
                 code.pipe(fs.createWriteStream(`${item.dataValues.id}.png`))
             });
         });
+    },
+    findById: function (req, res) {
+        console.log('lala')
+        plant.findOne(
+            { where: { 'id': req.body.id } }
+        ).then(msg => {
+            let code = qr.image(JSON.stringify(msg.dataValues), { type: 'png' })
+            code.pipe(fs.createWriteStream(`${msg.dataValues.id}.png`))
+            res.send( msg )
+        })
     },
     creat(req, res) {
         plant.create({

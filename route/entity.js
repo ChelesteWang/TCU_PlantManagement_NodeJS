@@ -15,4 +15,5 @@ router.use('/plant', function (req, res) {
     if(req.body.judge==1) plant.create(req,res)
     if(req.body.judge==2) plant.delete(req,res)
     if(req.body.judge==3) plant.update(req,res)
+    if(req.body.judge==4) plant.findById(req,res)
 });

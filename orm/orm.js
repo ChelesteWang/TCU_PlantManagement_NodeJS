@@ -6,7 +6,7 @@ module.exports = {
     //sequelize ORM对象关系映射 
     connection:function(req,res){
         var sequelize = new Sequelize(
-            'tree', // 数据库名
+            's_tree', // 数据库名
             'root',   // 用户名
             'yexuan0628',   // 用户密码
             // 'yexuan@0628',  //服务器数据库
