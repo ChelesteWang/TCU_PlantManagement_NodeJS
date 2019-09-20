@@ -51,6 +51,10 @@ module.exports = {
         const { pass,stu_id } = req.body;
         user.findOne(
             { where:{ stu_id,pass } }
-        ).then(msg => { res.send(msg); })
+        ).then(msg => {            
+            if (msg) {
+                res.send(msg)
+            } else res.status(432).send("登录校验失败")
+         })
     }
 };

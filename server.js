@@ -31,4 +31,4 @@ server.use('/ass', association);
 server.use('/upload', (req, res) => { file.upload(req, res); })
 
 // 监听端口
-server.listen(11111);
+server.listen(10000);
