@@ -6,6 +6,7 @@ const log = require('./log/log')
 const file = require('./utils/upload')
 // 路由
 const entity = require('./route/entity')
+const association = require('./route/association')
 
 var server = express();
 
@@ -26,6 +27,7 @@ server.use( async(req, res, next) => {
 
 // 加载外部router
 server.use('/ent', entity);
+server.use('/ass', association);
 server.use('/upload', (req, res) => { file.upload(req, res); })
 
 // 监听端口

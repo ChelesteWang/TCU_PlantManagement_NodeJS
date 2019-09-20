@@ -2,18 +2,51 @@ const express = require('express')
 const router = express.Router()
 
 // -------------实体导入-------------
-const plant = require('../entity/plant')
+const plant = require('../entity/plant');
+const kind = require('../entity/kind');
+const list = require('../entity/list');
+const user = require('../entity/user');
+const info = require('../entity/info');
 
 module.exports = router
 
 // -------------接口导出-------------
 router.use((req,res,next)=>{ next(); })
 
-// 用户&管理员
+// 植物信息
 router.use('/plant', function (req, res) { 
     if(req.body.judge==0) plant.findAndCountAll(req,res)
     if(req.body.judge==1) plant.create(req,res)
     if(req.body.judge==2) plant.delete(req,res)
     if(req.body.judge==3) plant.update(req,res)
     if(req.body.judge==4) plant.findById(req,res)
+});
+// 植物类型
+router.use('/kind', function (req, res) {
+    if(req.body.judge==0) kind.findAndCountAll(req,res)
+    if(req.body.judge==1) kind.create(req,res)
+    if(req.body.judge==2) kind.delete(req,res)
+    if(req.body.judge==3) kind.update(req,res)
+});
+// 卡片信息
+router.use('/list', function (req, res) {
+    if(req.body.judge==0) list.findAndCountAll(req,res)
+    if(req.body.judge==1) list.create(req,res)
+    if(req.body.judge==2) list.delete(req,res)
+    if(req.body.judge==3) list.update(req,res)
+});
+// 用户信息
+router.use('/user', function (req, res) {
+    if(req.body.judge==0) user.findAndCountAll(req,res)
+    if(req.body.judge==1) user.create(req,res)
+    if(req.body.judge==2) user.delete(req,res)
+    if(req.body.judge==3) user.update(req,res)
+    if(req.body.judge==4) user.login(req,res)
+});
+// 微信信息
+router.use('/info', function (req, res) {
+    if(req.body.judge==0) info.findAndCountAll(req,res)
+    if(req.body.judge==1) info.create(req,res)
+    if(req.body.judge==2) info.delete(req,res)
+    if(req.body.judge==3) info.update(req,res)
 });
