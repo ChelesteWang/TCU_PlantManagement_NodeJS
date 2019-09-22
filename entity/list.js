@@ -39,6 +39,7 @@ module.exports = {
     },
     // 更新信息
     update(req, res) {
+        const { id } = req.body;
         list.update(
             req.body,
             {

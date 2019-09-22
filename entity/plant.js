@@ -22,29 +22,22 @@ let plant = conn.define(
     }
 );
 
+// const { id } = req.body;
+// plant.findById(id).then(msg => {
+//     let code = qr.image(JSON.stringify(msg.dataValues), { type: 'png' })
+//     code.pipe(fs.createWriteStream(`${msg.dataValues.id}.png`))
+//     res.send(msg)
+// })
 module.exports = {
     // 模型实体
     plant,
     // 查询所有
     findAndCountAll(req, res) {
-        co(function* () {
-            var p = yield plant.findAndCountAll({
-                'attributes': ['id', 'name', 'sciname', 'detail_id']
-            })
-            p.rows.forEach(item => {
-                let code = qr.image(JSON.stringify(item.dataValues), { type: 'png' })
-                code.pipe(fs.createWriteStream(`${item.dataValues.id}.png`))
-            });
-        });
+        plant.findAndCountAll().then(msg => { res.send(msg) })
     },
     // 按id查询
     findById(req, res) {
-        const { id } = req.body;
-        plant.findById(id).then(msg => {
-            let code = qr.image(JSON.stringify(msg.dataValues), { type: 'png' })
-            code.pipe(fs.createWriteStream(`${msg.dataValues.id}.png`))
-            res.send(msg)
-        })
+        
     },
     // 创建信息
     create(req, res) { plant.create(req.body).then(msg => res.send(msg)) },
@@ -57,6 +50,7 @@ module.exports = {
     },
     // 更新信息
     update(req, res) {
+        const { id } = req.body;
         plant.update(
             req.body,
             { 'where': { id } }

@@ -22,10 +22,36 @@ module.exports = {
     },
     // 按id查询
     findOneById(req, res) {
-        console.log('lala')
         list.findById(
             req.body.id,
             {  include: [{ model: kind },{ model: plant }],
+        }).then(msg => { res.send(msg); })
+    },
+    // 模糊搜索 name
+    findAndCountAllByName(req,res){
+        const { name,offset,limit } = req.body;
+        list.findAndCountAll({
+            where:{
+                'name':{
+                    $like:`%${name}%`
+                }
+            },            
+            include: [{ model: kind },{ model: plant }],
+            order:[['id', 'ASC']],
+            offset: Number(offset),
+            limit: Number(limit),
+        }).then(msg => { res.send(msg); })
+    },
+    // 按类型查询
+    findAndCountAllByKind(req,res){
+        console.log('lalalala')
+        const { kind_id,offset,limit } = req.body;
+        list.findAndCountAll({
+            where : { kind_id },
+            include: [{ model: kind },{ model: plant }],
+            order:[['id', 'ASC']],
+            offset: Number(offset),
+            limit: Number(limit),
         }).then(msg => { res.send(msg); })
     }
 }

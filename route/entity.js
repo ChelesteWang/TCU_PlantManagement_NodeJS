@@ -7,6 +7,8 @@ const kind = require('../entity/kind');
 const list = require('../entity/list');
 const user = require('../entity/user');
 const info = require('../entity/info');
+const protect = require('../entity/protect');
+const photo = require('../entity/photo');
 
 module.exports = router
 
@@ -49,4 +51,18 @@ router.use('/info', function (req, res) {
     if(req.body.judge==1) info.create(req,res)
     if(req.body.judge==2) info.delete(req,res)
     if(req.body.judge==3) info.update(req,res)
+});
+// 养护管理
+router.use('/protect', function (req, res) {
+    if(req.body.judge==0) protect.findAndCountAll(req,res)
+    if(req.body.judge==1) protect.create(req,res)
+    if(req.body.judge==2) protect.delete(req,res)
+    if(req.body.judge==3) protect.update(req,res)
+});
+// 养护管理
+router.use('/photo', function (req, res) {
+    if(req.body.judge==0) photo.findAndCountAll(req,res)
+    if(req.body.judge==1) photo.create(req,res)
+    if(req.body.judge==2) photo.delete(req,res)
+    if(req.body.judge==3) photo.update(req,res)
 });
