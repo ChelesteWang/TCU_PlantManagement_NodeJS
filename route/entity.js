@@ -36,6 +36,7 @@ router.use('/list', function (req, res) {
     if(req.body.judge==1) list.create(req,res)
     if(req.body.judge==2) list.delete(req,res)
     if(req.body.judge==3) list.update(req,res)
+    if(req.body.judge==4) list.findByRand(req,res)
 });
 // 用户信息
 router.use('/user', function (req, res) {

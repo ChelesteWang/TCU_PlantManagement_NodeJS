@@ -41,9 +41,15 @@ module.exports = {
     update(req, res) {
         const { id } = req.body;
         list.update(
-            req.body,
-            {
-                where: { id }
-            }).then(msg => { res.send({ "upd": msg[0] }); })
+        req.body,
+        {
+            where: { id }
+        }).then(msg => { res.send({ "upd": msg[0] }); })
+    },
+    // 随机取值
+    findByRand(req, res){
+        const { number } = req.body;
+        conn.query(`select lon,lat from lists order by rand() limit ${number};`)
+        .then(msg => { res.send(msg)})
     }
 };
