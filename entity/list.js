@@ -1,6 +1,10 @@
 const Sequelize = require('sequelize')
 const conn = require('../orm/orm').connection();
 
+var co = require('co');  //yield
+const qr = require('qr-image')
+const fs = require('fs')
+
 // 模型层定义
 let list = conn.define(
     'list',
@@ -51,5 +55,20 @@ module.exports = {
         const { number } = req.body;
         conn.query(`select lon,lat from lists order by rand() limit ${number};`)
         .then(msg => { res.send(msg)})
+    },
+    // 生成树牌
+    creatCard(req, res){
+        list.findAll({
+            attributes:['id','tid','card','name']
+        }).then(msg => {
+            console.log(msg[0].dataValues)
+            // let code = qr.image(JSON.stringify({ version:'1.0.0', ...msg.dataValues}), { type: 'png' })
+            // code.pipe(fs.createWriteStream(`./card/${msg.dataValues.id}-${msg.dataValues.card}.png`))
+            for(let item of msg){
+                let code = qr.image(JSON.stringify({ version:1.0, ...item.dataValues}), { type: 'png' })
+                code.pipe(fs.createWriteStream(`./card/${item.dataValues.id}_${item.dataValues.card}.png`))
+            }
+            res.send(msg)
+        })
     }
 };

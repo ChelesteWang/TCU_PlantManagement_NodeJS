@@ -1,8 +1,5 @@
 const Sequelize = require('sequelize')
 const conn = require('../orm/orm').connection();
-var co = require('co');  //yield
-const qr = require('qr-image')
-const fs = require('fs')
 
 // 模型层定义
 let plant = conn.define(
@@ -22,12 +19,6 @@ let plant = conn.define(
     }
 );
 
-// const { id } = req.body;
-// plant.findById(id).then(msg => {
-//     let code = qr.image(JSON.stringify(msg.dataValues), { type: 'png' })
-//     code.pipe(fs.createWriteStream(`${msg.dataValues.id}.png`))
-//     res.send(msg)
-// })
 module.exports = {
     // 模型实体
     plant,
