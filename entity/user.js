@@ -14,7 +14,6 @@ let user = conn.define(
         'type': { 'type': Sequelize.INTEGER(11), 'allowNull': true },
         'mail': { 'type': Sequelize.CHAR(255), 'allowNull': true },
         'phone': { 'type': Sequelize.CHAR(255), 'allowNull': true },
-        'school_id': { 'type': Sequelize.CHAR(255), 'allowNull': true },
         'condition': { 'type': Sequelize.INTEGER(11), 'allowNull': true }
     }
 );

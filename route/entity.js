@@ -9,6 +9,7 @@ const user = require('../entity/user');
 const info = require('../entity/info');
 const protect = require('../entity/protect');
 const photo = require('../entity/photo');
+const callback = require('../entity/callback');
 
 module.exports = router
 
@@ -67,4 +68,11 @@ router.use('/photo', function (req, res) {
     if(req.body.judge==1) photo.create(req,res)
     if(req.body.judge==2) photo.delete(req,res)
     if(req.body.judge==3) photo.update(req,res)
+});
+// 用户信息
+router.use('/callback', function (req, res) {
+    if(req.body.judge==0) callback.findAndCountAll(req,res)
+    if(req.body.judge==1) callback.create(req,res)
+    if(req.body.judge==2) callback.delete(req,res)
+    if(req.body.judge==3) callback.update(req,res)
 });

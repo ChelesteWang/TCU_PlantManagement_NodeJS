@@ -8,6 +8,7 @@ const kind = require('../associate/kind')
 const plant = require('../associate/plant')
 const protect = require('../associate/protect')
 const photo = require('../associate/photo')
+const callback = require('../associate/callback')
 
 module.exports = router
 
@@ -42,4 +43,9 @@ router.use('/protect', function (req, res) {
 // 校园风景
 router.use('/photo', function (req, res) { 
     if(req.body.judge==0) photo.findAndCountAll(req,res)
+});
+// 用户&管理员
+router.use('/callback', function (req, res) { 
+    if(req.body.judge==0) callback.findAndCountAll(req,res)
+    if(req.body.judge==1) callback.findOneById(req,res)
 });
