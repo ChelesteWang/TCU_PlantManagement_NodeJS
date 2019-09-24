@@ -1,20 +1,22 @@
 const mysql = require('mysql');
 const Sequelize=require('sequelize')
 const log=require('../log/log')
-const dev = 0;  // 0.开发环境，1.正式环境
+
+const plat = process.argv[2] || 'dev';  // dev.开发环境，mas.正式环境
 
 let dbname, uname, pass, host;
-if(dev === 0){
-    dbname = 's_tree';
-    uname = 'root';
-    pass = 'yexuan0628';
-    host = '127.0.0.1'
-}else{
+if(plat === 'mas'){
     dbname = 'school_tree';
     uname = 'user';
     pass = 'yexuan@0628';
     host = '42.81.142.18'
+}else{
+    dbname = 's_tree';
+    uname = 'root';
+    pass = 'yexuan0628';
+    host = '127.0.0.1'
 }
+console.warn('当前运行环境为:',plat,'\n指向服务器host地址为:',host);
 
 module.exports = {
     //sequelize ORM对象关系映射 
