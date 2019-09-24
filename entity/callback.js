@@ -7,6 +7,7 @@ let callback = conn.define(
     {
         'id': { 'type': Sequelize.INTEGER(11), 'allowNull': true, 'primaryKey': true, 'autoIncrement': true },
         'user_id': { 'type': Sequelize.INTEGER(11), 'allowNull': true },
+        'list_id': { 'type': Sequelize.INTEGER(11), 'allowNull': true },
         'callback': { 'type': Sequelize.CHAR(255), 'allowNull': true }
     }
 );
