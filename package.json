@@ -22,7 +22,7 @@
     "mysql2": "1.6.4",
     "path": "*",
     "qr-image": "^3.2.0",
-    "request": "*",
+    "request": "^2.88.0",
     "sequelize": "4.41.2",
     "supervisor": "0.12.0"
   }

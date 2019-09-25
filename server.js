@@ -7,6 +7,7 @@ const file = require('./utils/upload')
 // 路由
 const entity = require('./route/entity')
 const association = require('./route/association')
+const weixin = require('./route/weixin')
 
 var server = express();
 
@@ -28,7 +29,9 @@ server.use( async(req, res, next) => {
 // 加载外部router
 server.use('/ent', entity);
 server.use('/ass', association);
+server.use('/wx', weixin);
 server.use('/upload', (req, res) => { file.upload(req, res); })
+server.use('/test', (req, res) => { res.send('test successfully ....') })
 
 // 监听端口
 server.listen(10000);
