@@ -33,6 +33,7 @@ server.use('/ass', association);
 server.use('/wx', weixin);
 server.use('/upload', (req, res) => { file.upload(req, res); })
 server.use('/test', (req, res) => { res.send('test successfully ....') })
+server.use('/index', (req, res) => { res.send({ ok:true }) })
 
 // 监听端口
 server.listen(10000);
