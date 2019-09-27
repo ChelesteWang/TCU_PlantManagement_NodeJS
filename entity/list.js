@@ -65,7 +65,7 @@ module.exports = {
             // let code = qr.image(JSON.stringify({ version:'1.0.0', ...msg.dataValues}), { type: 'png' })
             // code.pipe(fs.createWriteStream(`./card/${msg.dataValues.id}-${msg.dataValues.card}.png`))
             for(let item of msg){
-                let code = qr.image(JSON.stringify({ version:1.0, ...item.dataValues}), { type: 'png' })
+                let code = qr.image(JSON.stringify({ type:'tcu_tree',version:'1.0.0', ...item.dataValues}), { type: 'png' })
                 code.pipe(fs.createWriteStream(`./card/${item.dataValues.id}_${item.dataValues.card}.png`))
             }
             res.send(msg)
