@@ -23,7 +23,6 @@ server.use( async(req, res, next) => {
     // 允许所有请求
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin", "X-Requested-With", "Content-Type", "Accept" ,"Authorization");
-    console.log('路由状态-->',req.get('edition'))
     next();
 });
 
@@ -33,7 +32,7 @@ server.use('/ass', association);
 server.use('/wx', weixin);
 server.use('/upload', (req, res) => { file.upload(req, res); })
 server.use('/test', (req, res) => { res.send('test successfully ....') })
-server.use('/index', (req, res) => { res.send({ ok:true }) })
+server.use('/index', (req, res) => { res.send({ ok:false }) })
 
 // 监听端口
 server.listen(10000);
