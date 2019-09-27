@@ -23,6 +23,7 @@ server.use( async(req, res, next) => {
     // 允许所有请求
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin", "X-Requested-With", "Content-Type", "Accept" ,"Authorization");
+    console.log('路由状态-->',req.get('edition'))
     next();
 });
 
