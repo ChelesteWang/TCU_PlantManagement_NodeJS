@@ -23,6 +23,7 @@ router.use('/plant', function (req, res) {
     if(req.body.judge==2) plant.delete(req,res)
     if(req.body.judge==3) plant.update(req,res)
     if(req.body.judge==4) plant.findById(req,res)
+    if(req.body.judge==5) plant.count(req,res)
 });
 // 植物类型
 router.use('/kind', function (req, res) {
@@ -39,6 +40,7 @@ router.use('/list', function (req, res) {
     if(req.body.judge==3) list.update(req,res)
     if(req.body.judge==4) list.findByRand(req,res)
     if(req.body.judge==5) list.creatCard(req,res)
+    if(req.body.judge==6) list.count(req,res)
 });
 // 用户信息
 router.use('/user', function (req, res) {
@@ -61,6 +63,7 @@ router.use('/protect', function (req, res) {
     if(req.body.judge==1) protect.create(req,res)
     if(req.body.judge==2) protect.delete(req,res)
     if(req.body.judge==3) protect.update(req,res)
+    if(req.body.judge==4) protect.count(req,res)
 });
 // 养护管理
 router.use('/photo', function (req, res) {
@@ -68,6 +71,7 @@ router.use('/photo', function (req, res) {
     if(req.body.judge==1) photo.create(req,res)
     if(req.body.judge==2) photo.delete(req,res)
     if(req.body.judge==3) photo.update(req,res)
+    if(req.body.judge==4) photo.count(req,res)
 });
 // 用户信息
 router.use('/callback', function (req, res) {

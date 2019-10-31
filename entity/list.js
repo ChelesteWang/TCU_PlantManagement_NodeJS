@@ -70,5 +70,7 @@ module.exports = {
             }
             res.send(msg)
         })
-    }
+    },
+    // 获取数量
+    count(req, res) { list.count().then(msg => { res.send({number:msg}) }) },
 };

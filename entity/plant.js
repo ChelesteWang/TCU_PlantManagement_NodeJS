@@ -46,5 +46,7 @@ module.exports = {
             req.body,
             { 'where': { id } }
         ).then(msg => { res.send({ "upd": msg[0] }); })
-    }
+    },
+    // 获取数量
+    count(req, res) { plant.count().then(msg => { res.send({number:msg}) }) },
 };

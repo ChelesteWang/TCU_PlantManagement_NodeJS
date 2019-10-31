@@ -37,5 +37,7 @@ module.exports = {
             {
                 where: { id }
             }).then(msg => { res.send({ "upd": msg[0] }); })
-    }
+    },
+    // 获取数量
+    count(req, res) { photo.count().then(msg => { res.send({number:msg}) }) },
 };
